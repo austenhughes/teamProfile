@@ -28,19 +28,30 @@ let intern = "";
     },
   ]);
 
+  const generateHTML = (answers) =>
+  `  
+  <div class="card">
+  <div class="name"> Name : ${answers.name}</div>
+  <div> ID : ${answers.id}.</div>
+  <div><a href="mailto:${answers.email}">Email : ${answers.email}</a></div>
+  <div> School : ${answers.school}</div>
+  </div>
+`;
+
     engineerQuestions(); 
     function engineerQuestions () {
       promptUser().then((answers) => {
       intern = new Intern (answers.name, answers.id, answers.email, answers.school);
       console.log(answers);
       console.log(Intern);
-      console.log(intern)
+      console.log(intern);
+      html = generateHTML(answers);
       addInfo ();
       })
     };
 
     function addInfo(){
-      fs.appendFile('index.html', JSON.stringify(intern) , function (err) {
+      fs.appendFile('profile.html', html , function (err) {
         if (err) throw err;
         console.log('Saved!');
       });

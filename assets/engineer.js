@@ -27,6 +27,17 @@ let engineer = "";
     },
   ]);
 
+  const generateHTML = (answers) =>
+  ` 
+  <div class="card">
+    <div class="name"> Name : ${answers.name}</div>
+    <div> ID : ${answers.id}.</div>
+    <div><a href="${answers.github}" target="_blank">GitHub : ${answers.github}</a></div>
+    <div><a href="mailto:${answers.email}">Email : ${answers.email}</a></div>
+  </div>
+`;
+
+
     engineerQuestions(); 
     function engineerQuestions () {
       promptUser().then((answers) => {
@@ -34,12 +45,13 @@ let engineer = "";
       console.log(answers);
       console.log(Engineer);
       console.log(engineer);
+      html = generateHTML(answers);
       addInfo ();
       })
     };
 
     function addInfo(){
-      fs.appendFile('index.html', JSON.stringify(engineer) , function (err) {
+      fs.appendFile('profile.html', html , function (err) {
         if (err) throw err;
         console.log('Saved!');
       });

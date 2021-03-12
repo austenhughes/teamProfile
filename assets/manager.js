@@ -27,6 +27,16 @@ let manager = "";
     },
   ]);
 
+  const generateHTML = (answers) =>
+  `  
+  <div class="card">
+  <div class="name"> Name : ${answers.name}</div>
+  <div> ID : ${answers.id}.</div>
+  <div><a href="mailto:${answers.email}">Email : ${answers.email}</a></div>
+  <div> Office : ${answers.office}</div>
+  </div>
+`;
+
     managerQuestions(); 
     function managerQuestions () {
       promptUser().then((answers) => {
@@ -34,12 +44,13 @@ let manager = "";
       console.log(answers);
       console.log(Manager);
       console.log(manager);
+      html = generateHTML(answers);
       addInfo ();
       })
     };
 
     function addInfo(){
-      fs.appendFile('index.html', JSON.stringify(manager) , function (err) {
+      fs.appendFile('profile.html', html , function (err) {
         if (err) throw err;
         console.log('Saved!');
       });

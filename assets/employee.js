@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 let employee = "";
+let html = "";
 
   const promptUser = () =>
   inquirer.prompt([
@@ -22,19 +23,32 @@ let employee = "";
     },
   ]);
 
+  const generateHTML = (answers) =>
+  ` 
+  <div class="card">
+  <div class="name"> Name : ${answers.name}</div>
+  <div> ID : ${answers.id}.</div>
+  <div><a href="mailto:${answers.email}">Email : ${answers.email}</a></div>
+</div>
+
+</div>
+</body>
+</html>`;
+
     employeeQuestions(); 
     function employeeQuestions () {
       promptUser().then((answers) => {
       employee = new Employee (answers.name, answers.id, answers.email);
       console.log(answers);
       console.log(Employee);
-      console.log(employee);
+      html = generateHTML(answers);
+      // console.log(employee);
       addInfo();
       })
     };
 
     function addInfo(){
-    fs.appendFile('index.html', JSON.stringify(employee) , function (err) {
+    fs.appendFile('profile.html', html , function (err) {
       if (err) throw err;
       console.log('Saved!');
     });
