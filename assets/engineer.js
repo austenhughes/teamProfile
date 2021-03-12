@@ -1,4 +1,7 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+
+let engineer = "";
 
   const promptUser = () =>
   inquirer.prompt([
@@ -27,12 +30,20 @@ const inquirer = require('inquirer');
     engineerQuestions(); 
     function engineerQuestions () {
       promptUser().then((answers) => {
-      const engineer = new Engineer (answers.name, answers.id, answers.email, answers.github);
+      engineer = new Engineer (answers.name, answers.id, answers.email, answers.github);
       console.log(answers);
       console.log(Engineer);
-      console.log(engineer)
+      console.log(engineer);
+      addInfo ();
       })
     };
+
+    function addInfo(){
+      fs.appendFile('index.html', JSON.stringify(engineer) , function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+      });
+      }
 
     class Engineer {
       constructor(name, id, email, github) {
