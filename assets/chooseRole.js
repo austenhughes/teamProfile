@@ -21,33 +21,16 @@ const questions = () =>
     },
    ]);
 
-   start(); 
+    start(); 
     function start () {
       questions().then((answer) => {
-        // console.log(answer);
-        choice = answer;
-        // console.log(choice)
-
-        // if (choice="Employee"){
-        //   console.log("employee")
-        // }else if (choice="Manager"){
-        //   console.log("manager")
-        // }else if (choice="Intern"){
-        //   console.log("intern")
-        // }else if (choice="Engineer"){
-        //   console.log("engineer")
-        // }else{
-        //   console.log("unknown")
-        // }
-
+        choice = answer.role;
         send();
-
       })
     };
     
     function send(){
-      console.log(choice)
-            //switch for question set
+             //switch for question set
             switch(choice) {
               case 'Employee':
                 console.log("Employee")
@@ -67,7 +50,6 @@ const questions = () =>
                 break;
               default:
                 console.log("none")
-                // code block
             }
     }
 

@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+let selected = "";
+
 const questions = () =>
   inquirer.prompt([
     {
@@ -24,13 +26,27 @@ const questions = () =>
     start(); 
     function start() {
       questions().then((answer) => {
-        console.log(answer)
-        if (answer="Yes"){
-          console.log("yes")
-        }else{
-          close();
-        }
+        selected = answer.addMore
+        console.log(selected)
+        choose();
         })
+    };
+
+    function choose () {
+
+      switch(selected) {
+        case 'Yes':
+          console.log("yes")
+          break;
+        default:
+            console.log("done")
+            close();
+        }
+      // if (selected='Yes'){
+      //   console.log("yes")
+      // }else{
+        // close();
+      // }
     };
 
     function close(){

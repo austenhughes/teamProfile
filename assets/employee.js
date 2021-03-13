@@ -42,7 +42,6 @@ let html = "";
       console.log(answers);
       console.log(Employee);
       html = generateHTML(answers);
-      // console.log(employee);
       addInfo();
       })
     };
