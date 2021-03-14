@@ -4,7 +4,7 @@ const fs = require('fs');
 let intern = "";
 
 
-  const promptUser = () =>
+  const promptUserIntern = () =>
   inquirer.prompt([
     {
       type: 'input',
@@ -28,7 +28,7 @@ let intern = "";
     },
   ]);
 
-  const generateHTML = (answers) =>
+  const generateHTMLIntern = (answers) =>
   `  
   <div class="card">
   <div class="name"> Name : ${answers.name}</div>
@@ -38,19 +38,19 @@ let intern = "";
   </div>
 `;
 
-    engineerQuestions(); 
-    function engineerQuestions () {
-      promptUser().then((answers) => {
+    InternQuestions(); 
+    function InternQuestions () {
+      promptUserIntern().then((answers) => {
       intern = new Intern (answers.name, answers.id, answers.email, answers.school);
       console.log(answers);
       console.log(Intern);
       console.log(intern);
-      html = generateHTML(answers);
-      addInfo ();
+      html = generateHTMLIntern(answers);
+      addInfoIntern ();
       })
     };
 
-    function addInfo(){
+    function addInfoIntern(){
       fs.appendFile('profile.html', html , function (err) {
         if (err) throw err;
         console.log('Saved!');

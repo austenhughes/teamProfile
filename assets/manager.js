@@ -3,7 +3,7 @@ const fs = require('fs');
 
 let manager = "";
 
-  const promptUser = () =>
+  const promptUserManager = () =>
   inquirer.prompt([
     {
       type: 'input',
@@ -27,7 +27,7 @@ let manager = "";
     },
   ]);
 
-  const generateHTML = (answers) =>
+  const generateHTMLManager = (answers) =>
   `  
   <div class="card">
   <div class="name"> Name : ${answers.name}</div>
@@ -39,17 +39,17 @@ let manager = "";
 
     managerQuestions(); 
     function managerQuestions () {
-      promptUser().then((answers) => {
+      promptUserManager().then((answers) => {
       manager = new Manager (answers.name, answers.id, answers.email, answers.office);
       console.log(answers);
       console.log(Manager);
       console.log(manager);
-      html = generateHTML(answers);
-      addInfo ();
+      html = generateHTMLManager(answers);
+      addInfoManager ();
       })
     };
 
-    function addInfo(){
+    function addInfoManager(){
       fs.appendFile('profile.html', html , function (err) {
         if (err) throw err;
         console.log('Saved!');

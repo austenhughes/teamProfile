@@ -3,7 +3,7 @@ const fs = require('fs');
 
 let engineer = "";
 
-  const promptUser = () =>
+  const promptUserEngineer = () =>
   inquirer.prompt([
     {
       type: 'input',
@@ -27,7 +27,7 @@ let engineer = "";
     },
   ]);
 
-  const generateHTML = (answers) =>
+  const generateHTMLEngineer = (answers) =>
   ` 
   <div class="card">
     <div class="name"> Name : ${answers.name}</div>
@@ -40,17 +40,17 @@ let engineer = "";
 
     engineerQuestions(); 
     function engineerQuestions () {
-      promptUser().then((answers) => {
+      promptUserEngineer().then((answers) => {
       engineer = new Engineer (answers.name, answers.id, answers.email, answers.github);
       console.log(answers);
       console.log(Engineer);
       console.log(engineer);
-      html = generateHTML(answers);
-      addInfo ();
+      html = generateHTMLEngineer(answers);
+      addInfoEngineer ();
       })
     };
 
-    function addInfo(){
+    function addInfoEngineer(){
       fs.appendFile('profile.html', html , function (err) {
         if (err) throw err;
         console.log('Saved!');

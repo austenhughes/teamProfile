@@ -1,9 +1,13 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+// const chooseRole = require('./chooseRole');
+
 let selected = "";
 
-const questions = () =>
+// const addMore = choice =>{
+
+  const questions = () =>
   inquirer.prompt([
     {
       type:'list',
@@ -37,16 +41,12 @@ const questions = () =>
       switch(selected) {
         case 'Yes':
           console.log("yes")
+          // chooseRole.makeChoice();
           break;
         default:
             console.log("done")
-            close();
+            // close();
         }
-      // if (selected='Yes'){
-      //   console.log("yes")
-      // }else{
-        // close();
-      // }
     };
 
     function close(){
@@ -55,3 +55,6 @@ const questions = () =>
         console.log('Saved!');
       });
       }
+    // }
+
+    // module.exports = addMore();

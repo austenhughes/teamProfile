@@ -1,16 +1,6 @@
-// const Manager = require("./manager");
-// const Employee = require("./employee");
-// const Engineer = require("./engineer");
-// const Intern = require("./intern");
-// const addMore = require("./AddMore");
-// const chooseRole = require("./chooseRole");
-
-// open on choose role - will need to require the 4 roles
-// choose role calls selceted role - will need to require addmore 
-// selected role calls addmore - will need to require choose role
-// addmore calls choose role ... or ends things will console.log thank you and add bottom script tags
-
 const fs = require('fs');
+const { start } = require('repl');
+// const chooseRole = require('./chooseRole');
 
 const html =
 `<!DOCTYPE html>
@@ -32,6 +22,7 @@ newTeam();
 function newTeam(){
     fs.appendFile('profile.html', html , function (err) {
       if (err) throw err;
-      console.log('Saved!');
+      // console.log('Saved!');
     });
+    // chooseRole.start();
     }

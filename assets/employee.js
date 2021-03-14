@@ -1,10 +1,15 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-let employee = "";
-let html = "";
+// const addMore = require('./addMore');
+// const chooseRole = require('./chooseRole');
 
-  const promptUser = () =>
+let employee = "";
+let htmlEmployee = "";
+
+// function getEmployee() {
+
+  const promptUserEmployee = () =>
   inquirer.prompt([
     {
       type: 'input',
@@ -23,35 +28,33 @@ let html = "";
     },
   ]);
 
-  const generateHTML = (answers) =>
+  const generateHTMLEmployee = (answers) =>
   ` 
   <div class="card">
   <div class="name"> Name : ${answers.name}</div>
   <div> ID : ${answers.id}.</div>
   <div><a href="mailto:${answers.email}">Email : ${answers.email}</a></div>
-</div>
-
-</div>
-</body>
-</html>`;
+  </div>
+  `;
 
     employeeQuestions(); 
     function employeeQuestions () {
-      promptUser().then((answers) => {
+      promptUserEmployee().then((answers) => {
       employee = new Employee (answers.name, answers.id, answers.email);
       console.log(answers);
       console.log(Employee);
-      html = generateHTML(answers);
-      addInfo();
+      htmlEmployee = generateHTMLEmployee(answers);
+      addInfoEmployee();
       })
     };
 
-    function addInfo(){
-    fs.appendFile('profile.html', html , function (err) {
+    function addInfoEmployee(){
+    fs.appendFile('profile.html', htmlEmployee , function (err) {
       if (err) throw err;
       console.log('Saved!');
+      addMore.start();
     });
-    }
+    };
 
     class Employee {
       constructor(name, id, email) {
@@ -60,5 +63,8 @@ let html = "";
         this.email = email;
       }
     };
+  // };
 
   module.exports = Employee;
+
+  
