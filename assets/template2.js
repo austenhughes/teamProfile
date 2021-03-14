@@ -90,8 +90,3 @@ const generateCard = allEmployees => {
   };
 
 
-
-
-
-
-

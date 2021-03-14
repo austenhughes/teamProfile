@@ -7,6 +7,7 @@ const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
 const template = require("./src/template");
 
+
 const OUTPUT_DIR = path.resolve(__dirname,"dist");
 const outputPath = path.join(OUTPUT_DIR, "profile.html");
 
@@ -16,7 +17,6 @@ let choiceRole = "";
 let selected = "";
 
 const questions = () =>
-
   inquirer.prompt([
     {
       type:'list',
@@ -31,29 +31,7 @@ const questions = () =>
     }, 
    ]);
 
-open();
-function open(){
-  fs.appendFile('profile.html',
-    ` <!DOCTYPE html>
-  <html lang="en">
-  <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css">
-  <title>Document</title>
-  </head>
-  <body class="body">
-  <div class="container">
-  <div class="header">
-  <div>My Team</div>
-  </div>
-  `
-     , function (err) {
-      if (err) throw err;
-      console.log('Saved!');
-    });
-    init();
-} 
+    init(); 
     function init () {
       questions().then((answer) => {
         choiceRole = answer.role;
@@ -111,18 +89,9 @@ inquirer.prompt([
        init();
        break;
      default:
-      console.log("done");
-  fs.appendFile('profile.html',
-  ` 
-  </div>
-  </body>
-  </html>
-  `
-      , function (err) {
-      if (err) throw err;
-      console.log('Saved!');
-    });
-  }
+        console.log("done")
+        profile();
+     }
  };
 };
 
@@ -147,18 +116,6 @@ function promptUserEmployee(){
   .then((data) => {
     const employee = new Employee(data.name, data.id, data.email)
     team.push(employee);
-  fs.appendFile('profile.html',
-  ` 
-  <div class="card">
-  <div class="name"> Name : ${data.name}</div>
-  <div> ID : ${data.id}.</div>
-  <div><a href="mailto:${data.email}">Email : ${data.email}</a></div>
-  </div>
-  `
-     , function (err) {
-      if (err) throw err;
-      console.log('Saved!');
-    });
     start();
   })
 };
@@ -189,19 +146,6 @@ function promptUserEmployee(){
   .then((data) => {
     const engineer = new Engineer(data.name, data.id, data.email, data.github)
     team.push(engineer);
-  fs.appendFile('profile.html',
-  ` 
-  <div class="card">
-  <div class="name"> Name : ${data.name}</div>
-  <div> ID : ${data.id}.</div>
-  <div><a href="${data.github}" target="_blank">GitHub : ${data.github}</a></div>
-  <div><a href="mailto:${data.email}">Email : ${data.email}</a></div>
-  </div>
-  `
-      , function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-    });
     start();
   })
 };
@@ -230,21 +174,8 @@ function promptUserEmployee(){
     },
   ])
   .then((data) => {
-  const intern = new Intern (data.name, data.id, data.email, data.school)
-  team.push(intern);
-  fs.appendFile('profile.html',
-  ` 
-  <div class="card">
-  <div class="name"> Name : ${data.name}</div>
-  <div> ID : ${data.id}.</div>
-  <div> School : ${data.school}</div>
-  <div><a href="mailto:${data.email}">Email : ${data.email}</a></div>
-  </div>
-  `
-    , function (err) {
-      if (err) throw err;
-      console.log('Saved!');
-  });
+    const intern = new Intern (data.name, data.id, data.email, data.school)
+    team.push(intern);
     start();
   })
 };
@@ -275,19 +206,13 @@ function promptUserEmployee(){
   .then((data) => {
     const manager = new Manager(data.name, data.id, data.email, data.office)
     team.push(manager);
-    fs.appendFile('profile.html',
-    ` 
-  <div class="card">
-  <div class="name"> Name : ${data.name}</div>
-  <div> ID : ${data.id}.</div>
-  <div> Office # : ${data.office}</div>
-  <div><a href="mailto:${data.email}">Email : ${data.email}</a></div>
-  </div>
-  `
-      , function (err) {
-      if (err) throw err;
-      console.log('Saved!');
-  });
     start();
   })
 };
+
+function profile() {
+  fs.writeFile(outputPath, template(team), "UTF-8");
+  console.log(team);
+}
+
+

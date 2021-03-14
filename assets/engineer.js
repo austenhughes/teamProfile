@@ -27,7 +27,7 @@ let engineer = "";
     },
   ]);
 
-  const generateHTMLEngineer = (answers) =>
+  const generateHTMLEngineer = (answers) =>{
   ` 
   <div class="card">
     <div class="name"> Name : ${answers.name}</div>
@@ -35,16 +35,14 @@ let engineer = "";
     <div><a href="${answers.github}" target="_blank">GitHub : ${answers.github}</a></div>
     <div><a href="mailto:${answers.email}">Email : ${answers.email}</a></div>
   </div>
-`;
+`
+};
 
 
     engineerQuestions(); 
     function engineerQuestions () {
       promptUserEngineer().then((answers) => {
       engineer = new Engineer (answers.name, answers.id, answers.email, answers.github);
-      console.log(answers);
-      console.log(Engineer);
-      console.log(engineer);
       html = generateHTMLEngineer(answers);
       addInfoEngineer ();
       })
