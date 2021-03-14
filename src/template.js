@@ -1,4 +1,4 @@
-const generateCard = allEmployees => {
+const generateCard = chosenRole => {
 
   const generateHTMLEmployee = employee => {
     ` 
@@ -45,22 +45,22 @@ const generateCard = allEmployees => {
   
   const htmlArray = [];
   
-  htmlArray.push(allEmployees
+  htmlArray.push(chosenRole
     .filter(employee => employee.getRole === "Manager")
     .map(manager => generateHTMLManager(manager))
     );
   
-  htmlArray.push(allEmployees
+  htmlArray.push(chosenRole
     .filter(employee => employee.getRole === "Employee")
     .map(employee => generateHTMLEmployee(employee))
     );
   
-  htmlArray.push(allEmployees
+  htmlArray.push(chosenRole
     .filter(employee => employee.getRole === "Intern")
     .map(intern => generateHTMLIntern(intern))
     );
   
-  htmlArray.push(allEmployees
+  htmlArray.push(chosenRole
     .filter(employee => employee.getRole === "Engineer")
     .map(engineer => generateHTMLEngineer(engineer))
     );
@@ -68,7 +68,7 @@ const generateCard = allEmployees => {
    console.log(htmlArray);
   };
   
-  module.exports = allEmployees => {
+  module.exports = chosenRole => {
     `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -82,7 +82,7 @@ const generateCard = allEmployees => {
   <div class="header">
   <div>My Team</div>
   </div>'
-  ${generateCard(allEmployees)}
+  ${generateCard(chosenRole)}
   '</div>
   </body>
   </html>
