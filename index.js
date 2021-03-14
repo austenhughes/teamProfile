@@ -5,7 +5,7 @@ const Employee = require('./lib/employee');
 const Manager = require(".//lib/manager");
 const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
-const template = require("./src/template");
+const allEmployees = require("./src/template");
 
 const OUTPUT_DIR = path.resolve(__dirname,"dist");
 const outputPath = path.join(OUTPUT_DIR, "profile.html");
@@ -33,7 +33,7 @@ const questions = () =>
 
 open();
 function open(){
-  fs.appendFile('profile.html',
+  fs.appendFile(outputPath,
     ` <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -53,36 +53,37 @@ function open(){
       console.log('Saved!');
     });
     init();
-} 
-    function init () {
-      questions().then((answer) => {
-        choiceRole = answer.role;
-        send();
-      })
+};
 
-    function send(){
-      switch(choiceRole) {
-            case 'Employee':
-              console.log("Employee")
-              promptUserEmployee();
-              break;
-            case 'Manager':
-              console.log("Manager");
-              promptUserManager();
-              break;
-            case 'Intern':
-              console.log("Intern"); 
-              promptUserIntern();
-              break;
-            case 'Engineer':
-              console.log("Engineer");
-              promptUserEngineer();
-              break;
-            default:
-              console.log("none")
-          }
-}
-}
+function init () {
+  questions().then((answer) => {
+    choiceRole = answer.role;
+    send();
+  })
+
+function send(){
+  switch(choiceRole) {
+    case 'Employee':
+        console.log("Employee")
+        promptUserEmployee();
+    break;
+    case 'Manager':
+        console.log("Manager");
+        promptUserManager();
+    break;
+    case 'Intern':
+        console.log("Intern"); 
+        promptUserIntern();
+    break;
+    case 'Engineer':
+        console.log("Engineer");
+        promptUserEngineer();
+    break;
+    default:
+        console.log("none")
+      }
+  }
+};
 
 const again = () =>
 inquirer.prompt([
@@ -96,7 +97,7 @@ inquirer.prompt([
     ]
   },
  ]);
- 
+
  function start() {
    again().then((answers) => {
      selected = answers.addMore
@@ -112,7 +113,7 @@ inquirer.prompt([
        break;
      default:
       console.log("done");
-  fs.appendFile('profile.html',
+  fs.appendFile(outputPath,
   ` 
   </div>
   </body>
@@ -147,7 +148,7 @@ function promptUserEmployee(){
   .then((data) => {
     const employee = new Employee(data.name, data.id, data.email)
     team.push(employee);
-  fs.appendFile('profile.html',
+  fs.appendFile(outputPath,
   ` 
   <div class="card">
   <div class="name"> Name : ${data.name}</div>
@@ -163,7 +164,7 @@ function promptUserEmployee(){
   })
 };
 
-  function promptUserEngineer () {
+function promptUserEngineer () {
   inquirer.prompt([
     {
       type: 'input',
@@ -189,7 +190,7 @@ function promptUserEmployee(){
   .then((data) => {
     const engineer = new Engineer(data.name, data.id, data.email, data.github)
     team.push(engineer);
-  fs.appendFile('profile.html',
+  fs.appendFile(outputPath,
   ` 
   <div class="card">
   <div class="name"> Name : ${data.name}</div>
@@ -206,7 +207,7 @@ function promptUserEmployee(){
   })
 };
 
-  function promptUserIntern() {
+function promptUserIntern() {
   inquirer.prompt([
     {
       type: 'input',
@@ -232,7 +233,7 @@ function promptUserEmployee(){
   .then((data) => {
   const intern = new Intern (data.name, data.id, data.email, data.school)
   team.push(intern);
-  fs.appendFile('profile.html',
+  fs.appendFile(outputPath,
   ` 
   <div class="card">
   <div class="name"> Name : ${data.name}</div>
@@ -249,7 +250,7 @@ function promptUserEmployee(){
   })
 };
 
-  function promptUserManager() {
+function promptUserManager() {
   inquirer.prompt([
     {
       type: 'input',
@@ -275,7 +276,7 @@ function promptUserEmployee(){
   .then((data) => {
     const manager = new Manager(data.name, data.id, data.email, data.office)
     team.push(manager);
-    fs.appendFile('profile.html',
+    fs.appendFile(outputPath,
     ` 
   <div class="card">
   <div class="name"> Name : ${data.name}</div>

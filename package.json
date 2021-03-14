@@ -3,8 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,11 +26,5 @@
   "bugs": {
     "url": "https://github.com/austenhughes/teamProfile/issues"
   },
-  "homepage": "https://github.com/austenhughes/teamProfile#readme",
-  "dependencies": {
-    "inquirer": "^8.0.0"
-  },
-  "devDependencies": {
-    "jest": "^26.6.3"
-  }
+  "homepage": "https://github.com/austenhughes/teamProfile#readme"
 }
